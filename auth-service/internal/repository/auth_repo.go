@@ -22,3 +22,13 @@ func (r *UserRepository) GetUserByUsername(username string) (*models.User, error
 	err := r.db.Where("username = ?", username).First(&user).Error
 	return &user, err
 }
+
+func (r *UserRepository) SaveRefreshToken(userID uint, token string) error {
+	return r.db.Model(&models.User{}).Where("id = ?", userID).Update("refresh_token", token).Error
+}
+
+func (r *UserRepository) GetUserByRefreshToken(token string) (*models.User, error) {
+	var user models.User
+	err := r.db.Where("refresh_token = ?", token).First(&user).Error
+	return &user, err
+}

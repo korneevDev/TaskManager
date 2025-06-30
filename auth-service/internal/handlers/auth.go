@@ -2,13 +2,12 @@ package handlers
 
 import (
 	"net/http"
-	"time"
 
 	"github.com/korneevDev/auth-service/internal/models"
 	"github.com/korneevDev/auth-service/internal/repository"
+	"github.com/korneevDev/auth-service/pkg/jwt"
 
 	"github.com/gin-gonic/gin"
-	"github.com/golang-jwt/jwt/v5"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -37,7 +36,6 @@ func (h *AuthHandler) Register(c *gin.Context) {
 
 	c.JSON(http.StatusCreated, gin.H{"message": "User created"})
 }
-
 func (h *AuthHandler) Login(c *gin.Context) {
 	var req models.LoginRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
@@ -51,25 +49,43 @@ func (h *AuthHandler) Login(c *gin.Context) {
 		return
 	}
 
+	// Проверка пароля
 	if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(req.Password)); err != nil {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid credentials"})
 		return
 	}
 
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-		"sub": user.ID,
-		"exp": time.Now().Add(time.Hour * 24).Unix(),
-	})
+	// Генерация токенов
+	accessToken, _ := jwt.GenerateAccessToken(user)
+	refreshToken, _ := jwt.GenerateRefreshToken(user)
 
-	tokenString, err := token.SignedString([]byte("your-secret-key"))
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to generate token"})
+	h.userRepo.SaveRefreshToken(user.ID, refreshToken)
+
+	c.JSON(http.StatusOK, gin.H{
+		"access_token":  accessToken,
+		"refresh_token": refreshToken,
+	})
+}
+
+func (h *AuthHandler) Refresh(c *gin.Context) {
+	var req struct {
+		RefreshToken string `json:"refresh_token" binding:"required"`
+	}
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request"})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"token": tokenString})
-}
+	user, err := h.userRepo.GetUserByRefreshToken(req.RefreshToken)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid refresh token"})
+		return
+	}
 
-func (h *AuthHandler) Validate(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{"message": "Authenticated"})
+	// Генерируем новый access-токен
+	newAccessToken, _ := jwt.GenerateAccessToken(user)
+
+	c.JSON(http.StatusOK, gin.H{
+		"access_token": newAccessToken,
+	})
 }
