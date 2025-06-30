@@ -3,6 +3,8 @@ package main
 import (
 	"log"
 
+	"time"
+
 	"github.com/gin-gonic/gin"
 	config "github.com/korneevDev/auth-service/configs"
 	"github.com/korneevDev/auth-service/internal/handlers"
@@ -33,7 +35,9 @@ func main() {
 	db.AutoMigrate(&models.User{})
 
 	userRepo := repository.NewUserRepository(db)
-	authHandler := handlers.NewAuthHandler(*userRepo)
+	authHandler := handlers.NewAuthHandler(*userRepo, cfg.JWTSecret,
+		cfg.AccessTokenExpiry*time.Minute,
+		cfg.RefreshTokenExpiry*time.Hour)
 
 	r := gin.Default()
 	r.POST("/register", authHandler.Register)

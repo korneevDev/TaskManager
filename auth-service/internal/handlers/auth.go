@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"net/http"
+	"time"
 
 	"github.com/korneevDev/auth-service/internal/models"
 	"github.com/korneevDev/auth-service/internal/repository"
@@ -12,11 +13,23 @@ import (
 )
 
 type AuthHandler struct {
-	userRepo repository.UserRepository
+	userRepo           repository.UserRepository
+	jwtSecret          string
+	accessTokenExpiry  time.Duration
+	refreshTokenExpiry time.Duration
 }
 
-func NewAuthHandler(userRepo repository.UserRepository) *AuthHandler {
-	return &AuthHandler{userRepo: userRepo}
+func NewAuthHandler(
+	userRepo repository.UserRepository,
+	jwtSecret string,
+	accessTokenExpiry time.Duration,
+	refreshTokenExpiry time.Duration,
+) *AuthHandler {
+	return &AuthHandler{userRepo: userRepo,
+		jwtSecret:          jwtSecret,
+		accessTokenExpiry:  accessTokenExpiry,
+		refreshTokenExpiry: refreshTokenExpiry,
+	}
 }
 
 func (h *AuthHandler) Register(c *gin.Context) {
@@ -49,15 +62,13 @@ func (h *AuthHandler) Login(c *gin.Context) {
 		return
 	}
 
-	// Проверка пароля
 	if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(req.Password)); err != nil {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid credentials"})
 		return
 	}
 
-	// Генерация токенов
-	accessToken, _ := jwt.GenerateAccessToken(user)
-	refreshToken, _ := jwt.GenerateRefreshToken(user)
+	accessToken, _ := jwt.GenerateAccessToken(user, h.accessTokenExpiry, h.jwtSecret)
+	refreshToken, _ := jwt.GenerateRefreshToken(user, h.refreshTokenExpiry, h.jwtSecret)
 
 	h.userRepo.SaveRefreshToken(user.ID, refreshToken)
 
@@ -82,8 +93,7 @@ func (h *AuthHandler) Refresh(c *gin.Context) {
 		return
 	}
 
-	// Генерируем новый access-токен
-	newAccessToken, _ := jwt.GenerateAccessToken(user)
+	newAccessToken, _ := jwt.GenerateAccessToken(user, h.accessTokenExpiry, h.jwtSecret)
 
 	c.JSON(http.StatusOK, gin.H{
 		"access_token": newAccessToken,

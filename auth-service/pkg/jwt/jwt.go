@@ -7,26 +7,20 @@ import (
 	"github.com/korneevDev/auth-service/internal/models"
 )
 
-const (
-	AccessTokenExpiry  = 15 * time.Minute
-	RefreshTokenExpiry = 7 * 24 * time.Hour
-	SecretKey          = "your-very-secure-key"
-)
-
-func GenerateAccessToken(user *models.User) (string, error) {
+func GenerateAccessToken(user *models.User, accessTokenExpiry time.Duration, secretKey string) (string, error) {
 	claims := jwt.MapClaims{
 		"sub": user.ID,
-		"exp": time.Now().Add(AccessTokenExpiry).Unix(),
+		"exp": time.Now().Add(accessTokenExpiry).Unix(),
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	return token.SignedString([]byte(SecretKey))
+	return token.SignedString([]byte(secretKey))
 }
 
-func GenerateRefreshToken(user *models.User) (string, error) {
+func GenerateRefreshToken(user *models.User, refreshTokenExpiry time.Duration, secretKey string) (string, error) {
 	claims := jwt.MapClaims{
 		"sub": user.ID,
-		"exp": time.Now().Add(RefreshTokenExpiry).Unix(),
+		"exp": time.Now().Add(refreshTokenExpiry).Unix(),
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	return token.SignedString([]byte(SecretKey))
+	return token.SignedString([]byte(secretKey))
 }
