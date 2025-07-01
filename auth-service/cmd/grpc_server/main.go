@@ -35,11 +35,11 @@ func main() {
 	}
 	db.AutoMigrate(&models.User{})
 
-	userRepo := repository.NewUserRepository(db)
+	var userRepo repository.UserRepository = repository.NewUserRepository(db)
 
 	grpcServer := grpc.NewServer()
 	pb.RegisterAuthServiceServer(grpcServer, grpcInternal.NewAuthServer(
-		*userRepo, cfg.JWTSecret, cfg.AccessTokenExpiry, cfg.RefreshTokenExpiry))
+		userRepo, cfg.JWTSecret, cfg.AccessTokenExpiry, cfg.RefreshTokenExpiry))
 
 	lis, err := net.Listen("tcp", ":"+cfg.GRPCPort)
 	if err != nil {

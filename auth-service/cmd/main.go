@@ -40,8 +40,8 @@ func main() {
 	}
 	db.AutoMigrate(&models.User{})
 
-	userRepo := repository.NewUserRepository(db)
-	authHandler := handlers.NewAuthHandler(*userRepo, cfg.JWTSecret,
+	var userRepo repository.UserRepository = repository.NewUserRepository(db)
+	authHandler := handlers.NewAuthHandler(userRepo, cfg.JWTSecret,
 		cfg.AccessTokenExpiry*time.Minute,
 		cfg.RefreshTokenExpiry*time.Hour)
 
