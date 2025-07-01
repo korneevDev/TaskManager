@@ -1,3 +1,4 @@
+// main.go
 package main
 
 import (
@@ -36,7 +37,7 @@ func main() {
 	db.AutoMigrate(&models.Task{})
 
 	taskRepo := repository.NewTaskRepository(db)
-	taskHandler := handlers.NewTaskHandler(*taskRepo, cfg.JWTSecret)
+	taskHandler := handlers.NewTaskHandler(taskRepo, cfg.JWTSecret)
 
 	r := gin.Default()
 
@@ -44,7 +45,6 @@ func main() {
 
 	taskGroup := r.Group("/tasks")
 	taskGroup.Use(func(c *gin.Context) {
-
 		if strings.HasPrefix(c.Request.URL.Path, "/swagger/") {
 			c.Next()
 			return

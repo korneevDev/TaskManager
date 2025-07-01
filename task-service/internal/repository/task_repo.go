@@ -1,3 +1,4 @@
+// repository/task_repository.go
 package repository
 
 import (
@@ -7,11 +8,22 @@ import (
 	"gorm.io/gorm"
 )
 
+// TaskRepositoryInterface определяет контракт для репозитория задач
+type TaskRepositoryInterface interface {
+	Create(task *models.Task) error
+	GetByIDWithOwner(id uint, userID uint) (*models.Task, error)
+	UpdateForUser(task *models.Task, userID uint) error
+	DeleteForUser(id uint, userID uint) error
+	ListByUser(userID uint) ([]models.Task, error)
+}
+
+// TaskRepository реализует TaskRepositoryInterface
 type TaskRepository struct {
 	db *gorm.DB
 }
 
-func NewTaskRepository(db *gorm.DB) *TaskRepository {
+// NewTaskRepository создает новый экземпляр TaskRepository
+func NewTaskRepository(db *gorm.DB) TaskRepositoryInterface {
 	return &TaskRepository{db: db}
 }
 

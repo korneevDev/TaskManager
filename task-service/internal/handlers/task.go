@@ -13,11 +13,11 @@ import (
 )
 
 type TaskHandler struct {
-	repo      repository.TaskRepository
+	repo      repository.TaskRepositoryInterface // Используем интерфейс вместо конкретной реализации
 	jwtSecret string
 }
 
-func NewTaskHandler(repo repository.TaskRepository, jwtSecret string) *TaskHandler {
+func NewTaskHandler(repo repository.TaskRepositoryInterface, jwtSecret string) *TaskHandler {
 	return &TaskHandler{
 		repo:      repo,
 		jwtSecret: jwtSecret,

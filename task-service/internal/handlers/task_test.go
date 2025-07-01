@@ -1,4 +1,4 @@
-package repository_test
+package handlers_test
 
 import (
 	"bytes"
@@ -14,6 +14,7 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/korneevDev/task-service/internal/handlers"
 	"github.com/korneevDev/task-service/internal/models"
+	"github.com/korneevDev/task-service/internal/repository"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 )
@@ -30,6 +31,9 @@ func (m *MockTaskRepository) Create(task *models.Task) error {
 
 func (m *MockTaskRepository) GetByIDWithOwner(id uint, userID uint) (*models.Task, error) {
 	args := m.Called(id, userID)
+	if args.Get(0) == nil {
+		return nil, args.Error(1)
+	}
 	return args.Get(0).(*models.Task), args.Error(1)
 }
 
@@ -50,7 +54,7 @@ func (m *MockTaskRepository) ListByUser(userID uint) ([]models.Task, error) {
 
 type HandlerTestSuite struct {
 	router       *gin.Engine
-	repo         *MockTaskRepository
+	repo         repository.TaskRepositoryInterface
 	jwtSecret    string
 	validToken   string
 	invalidToken string
@@ -88,18 +92,18 @@ func TestHandlers(t *testing.T) {
 	suite.SetupTest()
 
 	t.Run("Test ExtractUserID", func(t *testing.T) {
-		// Тестирование успешного извлечения ID пользователя
+		handler := handlers.NewTaskHandler(suite.repo, suite.jwtSecret)
+
+		// Успешное извлечение ID
 		c, _ := gin.CreateTestContext(httptest.NewRecorder())
 		c.Request, _ = http.NewRequest("GET", "/", nil)
 		c.Request.Header.Set("Authorization", "Bearer "+suite.validToken)
 
-		handler := handlers.NewTaskHandler(suite.repo, suite.jwtSecret)
 		userID, err := handler.ExtractUserID(c)
-
 		assert.NoError(t, err)
 		assert.Equal(t, uint(1), userID)
 
-		// Тестирование ошибок
+		// Тесты ошибок
 		testCases := []struct {
 			name   string
 			header string
@@ -134,8 +138,9 @@ func TestHandlers(t *testing.T) {
 		createdTask.ID = 1
 		createdTask.UserID = 1
 
-		// Настраиваем мок
-		suite.repo.On("Create", mock.AnythingOfType("*models.Task")).
+		// Настройка мока
+		mockRepo := suite.repo.(*MockTaskRepository)
+		mockRepo.On("Create", mock.AnythingOfType("*models.Task")).
 			Run(func(args mock.Arguments) {
 				arg := args.Get(0).(*models.Task)
 				arg.ID = 1
@@ -143,26 +148,27 @@ func TestHandlers(t *testing.T) {
 			}).
 			Return(nil).Once()
 
-		// Подготавливаем запрос
+		// Подготовка запроса
 		body, _ := json.Marshal(task)
 		req, _ := http.NewRequest("POST", "/tasks", bytes.NewBuffer(body))
 		req.Header.Set("Authorization", "Bearer "+suite.validToken)
 		req.Header.Set("Content-Type", "application/json")
 
-		// Выполняем запрос
+		// Выполнение запроса
 		w := httptest.NewRecorder()
 		suite.router.ServeHTTP(w, req)
 
-		// Проверяем результат
+		// Проверки
 		assert.Equal(t, http.StatusCreated, w.Code)
 
 		var response models.Task
-		_ = json.Unmarshal(w.Body.Bytes(), &response)
+		err := json.Unmarshal(w.Body.Bytes(), &response)
+		assert.NoError(t, err)
 		assert.Equal(t, createdTask.ID, response.ID)
 		assert.Equal(t, createdTask.Title, response.Title)
 		assert.Equal(t, createdTask.UserID, response.UserID)
 
-		// Проверяем ошибки
+		// Проверка ошибок
 		testCases := []struct {
 			name         string
 			token        string
@@ -192,26 +198,28 @@ func TestHandlers(t *testing.T) {
 			{ID: 2, Title: "Task 2", UserID: 1},
 		}
 
-		// Настраиваем мок
-		suite.repo.On("ListByUser", uint(1)).Return(tasks, nil).Once()
+		// Настройка мока
+		mockRepo := suite.repo.(*MockTaskRepository)
+		mockRepo.On("ListByUser", uint(1)).Return(tasks, nil).Once()
 
-		// Подготавливаем запрос
+		// Подготовка запроса
 		req, _ := http.NewRequest("GET", "/tasks", nil)
 		req.Header.Set("Authorization", "Bearer "+suite.validToken)
 
-		// Выполняем запрос
+		// Выполнение запроса
 		w := httptest.NewRecorder()
 		suite.router.ServeHTTP(w, req)
 
-		// Проверяем результат
+		// Проверки
 		assert.Equal(t, http.StatusOK, w.Code)
 
 		var response []models.Task
-		_ = json.Unmarshal(w.Body.Bytes(), &response)
+		err := json.Unmarshal(w.Body.Bytes(), &response)
+		assert.NoError(t, err)
 		assert.Len(t, response, 2)
 		assert.Equal(t, tasks[0].Title, response[0].Title)
 
-		// Проверяем ошибки
+		// Проверка ошибки авторизации
 		t.Run("Invalid token", func(t *testing.T) {
 			req, _ := http.NewRequest("GET", "/tasks", nil)
 			req.Header.Set("Authorization", "Bearer "+suite.invalidToken)
@@ -225,28 +233,27 @@ func TestHandlers(t *testing.T) {
 	t.Run("Test Get Task By ID", func(t *testing.T) {
 		task := models.Task{ID: 1, Title: "Test task", UserID: 1}
 
-		// Настраиваем мок для успешного случая
-		suite.repo.On("GetByIDWithOwner", uint(1), uint(1)).Return(&task, nil).Once()
-		// Настраиваем мок для случая "не найдено"
-		suite.repo.On("GetByIDWithOwner", uint(2), uint(1)).Return(&models.Task{}, errors.New("not found")).Once()
+		// Настройка моков
+		mockRepo := suite.repo.(*MockTaskRepository)
+		mockRepo.On("GetByIDWithOwner", uint(1), uint(1)).Return(&task, nil).Once()
+		mockRepo.On("GetByIDWithOwner", uint(2), uint(1)).Return(nil, errors.New("not found")).Once()
 
-		// Подготавливаем запрос
+		// Успешный запрос
 		req, _ := http.NewRequest("GET", "/tasks/1", nil)
 		req.Header.Set("Authorization", "Bearer "+suite.validToken)
 
-		// Выполняем запрос
 		w := httptest.NewRecorder()
 		suite.router.ServeHTTP(w, req)
 
-		// Проверяем результат
 		assert.Equal(t, http.StatusOK, w.Code)
 
 		var response models.Task
-		_ = json.Unmarshal(w.Body.Bytes(), &response)
+		err := json.Unmarshal(w.Body.Bytes(), &response)
+		assert.NoError(t, err)
 		assert.Equal(t, task.ID, response.ID)
 		assert.Equal(t, task.Title, response.Title)
 
-		// Проверяем ошибки
+		// Тесты ошибок
 		testCases := []struct {
 			name         string
 			taskID       string
@@ -276,30 +283,30 @@ func TestHandlers(t *testing.T) {
 			Status:      "in_progress",
 		}
 
-		// Настраиваем моки
-		suite.repo.On("UpdateForUser", &updatedTask, uint(1)).Return(nil).Once()
-		suite.repo.On("GetByIDWithOwner", uint(1), uint(1)).Return(&updatedTask, nil).Once()
-		suite.repo.On("UpdateForUser", mock.Anything, uint(1)).Return(errors.New("not found")).Once()
+		// Настройка моков
+		mockRepo := suite.repo.(*MockTaskRepository)
+		mockRepo.On("UpdateForUser", &updatedTask, uint(1)).Return(nil).Once()
+		mockRepo.On("GetByIDWithOwner", uint(1), uint(1)).Return(&updatedTask, nil).Once()
+		mockRepo.On("UpdateForUser", mock.Anything, uint(1)).Return(errors.New("not found")).Once()
 
-		// Подготавливаем запрос
+		// Успешный запрос
 		body, _ := json.Marshal(updatedTask)
 		req, _ := http.NewRequest("PUT", "/tasks/1", bytes.NewBuffer(body))
 		req.Header.Set("Authorization", "Bearer "+suite.validToken)
 		req.Header.Set("Content-Type", "application/json")
 
-		// Выполняем запрос
 		w := httptest.NewRecorder()
 		suite.router.ServeHTTP(w, req)
 
-		// Проверяем результат
 		assert.Equal(t, http.StatusOK, w.Code)
 
 		var response models.Task
-		_ = json.Unmarshal(w.Body.Bytes(), &response)
+		err := json.Unmarshal(w.Body.Bytes(), &response)
+		assert.NoError(t, err)
 		assert.Equal(t, updatedTask.Title, response.Title)
 		assert.Equal(t, updatedTask.Status, response.Status)
 
-		// Проверяем ошибки
+		// Тесты ошибок
 		testCases := []struct {
 			name         string
 			taskID       string
@@ -325,22 +332,21 @@ func TestHandlers(t *testing.T) {
 	})
 
 	t.Run("Test Delete Task", func(t *testing.T) {
-		// Настраиваем моки
-		suite.repo.On("DeleteForUser", uint(1), uint(1)).Return(nil).Once()
-		suite.repo.On("DeleteForUser", uint(2), uint(1)).Return(errors.New("not found")).Once()
+		// Настройка моков
+		mockRepo := suite.repo.(*MockTaskRepository)
+		mockRepo.On("DeleteForUser", uint(1), uint(1)).Return(nil).Once()
+		mockRepo.On("DeleteForUser", uint(2), uint(1)).Return(errors.New("not found")).Once()
 
-		// Подготавливаем запрос
+		// Успешный запрос
 		req, _ := http.NewRequest("DELETE", "/tasks/1", nil)
 		req.Header.Set("Authorization", "Bearer "+suite.validToken)
 
-		// Выполняем запрос
 		w := httptest.NewRecorder()
 		suite.router.ServeHTTP(w, req)
 
-		// Проверяем результат
 		assert.Equal(t, http.StatusNoContent, w.Code)
 
-		// Проверяем ошибки
+		// Тесты ошибок
 		testCases := []struct {
 			name         string
 			taskID       string
