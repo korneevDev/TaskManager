@@ -1,0 +1,145 @@
+definitions:
+  models.LoginRequest:
+    properties:
+      password:
+        example: securepassword123
+        type: string
+      username:
+        example: john_doe
+        type: string
+    required:
+    - password
+    - username
+    type: object
+  models.RegisterRequest:
+    properties:
+      password:
+        example: securepassword123
+        type: string
+      username:
+        example: john_doe
+        type: string
+    required:
+    - password
+    - username
+    type: object
+info:
+  contact: {}
+paths:
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: Возвращает access и refresh токены
+      parameters:
+      - description: Учетные данные
+        in: body
+        name: credentials
+        required: true
+        schema:
+          $ref: '#/definitions/models.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Аутентификация пользователя
+      tags:
+      - auth
+  /refresh:
+    post:
+      consumes:
+      - application/json
+      description: Возвращает новый access токен
+      parameters:
+      - description: Refresh токен
+        in: body
+        name: token
+        required: true
+        schema:
+          properties:
+            refresh_token:
+              type: string
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Обновление токена
+      tags:
+      - auth
+  /register:
+    post:
+      consumes:
+      - application/json
+      description: Создает нового пользователя
+      parameters:
+      - description: Данные пользователя
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.RegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Регистрация пользователя
+      tags:
+      - auth
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

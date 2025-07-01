@@ -12,8 +12,15 @@ import (
 	"github.com/korneevDev/auth-service/internal/repository"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+
+	_ "github.com/korneevDev/auth-service/docs"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
+// @securityDefinitions.apikey BearerAuth
+// @in header
+// @name Authorization
 func main() {
 	cfg, err := config.LoadConfig()
 	if err != nil {
@@ -40,9 +47,13 @@ func main() {
 		cfg.RefreshTokenExpiry*time.Hour)
 
 	r := gin.Default()
+
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+
 	r.POST("/register", authHandler.Register)
 	r.POST("/login", authHandler.Login)
 	r.POST("/refresh", authHandler.Refresh)
 
 	r.Run(":8080")
+
 }

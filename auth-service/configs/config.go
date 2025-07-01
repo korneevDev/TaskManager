@@ -17,6 +17,7 @@ type Config struct {
 	JWTSecret          string        `mapstructure:"JWT_SECRET"`
 	AccessTokenExpiry  time.Duration `mapstructure:"ACCESS_TOKEN_EXPIRY"`
 	RefreshTokenExpiry time.Duration `mapstructure:"ACCESS_TOKEN_EXPIRY"`
+	GRPCPort           string        `mapstructure:"GRPC_PORT"`
 }
 
 func LoadConfig() (*Config, error) {
@@ -35,6 +36,7 @@ func LoadConfig() (*Config, error) {
 		JWTSecret:          viper.GetString("JWT_SECRET"),
 		AccessTokenExpiry:  viper.GetDuration("ACCESS_TOKEN_EXPIRY"),
 		RefreshTokenExpiry: viper.GetDuration("REFRESH_TOKEN_EXPIRY"),
+		GRPCPort:           viper.GetString("GRPC_PORT"),
 	}
 
 	return cfg, nil

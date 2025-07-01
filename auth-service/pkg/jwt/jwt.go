@@ -24,3 +24,14 @@ func GenerateRefreshToken(user *models.User, refreshTokenExpiry time.Duration, s
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	return token.SignedString([]byte(secretKey))
 }
+
+func ValidateToken(tokenString, secret string) (jwt.MapClaims, error) {
+	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+		return []byte(secret), nil
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	return token.Claims.(jwt.MapClaims), nil
+}

@@ -32,6 +32,17 @@ func NewAuthHandler(
 	}
 }
 
+// Register godoc
+// @Summary Регистрация пользователя
+// @Description Создает нового пользователя
+// @Tags auth
+// @Accept  json
+// @Produce  json
+// @Param user body models.RegisterRequest true "Данные пользователя"
+// @Success 201 {object} map[string]string
+// @Failure 400 {object} map[string]string
+// @Failure 500 {object} map[string]string
+// @Router /register [post]
 func (h *AuthHandler) Register(c *gin.Context) {
 	var user models.User
 	if err := c.ShouldBindJSON(&user); err != nil {
@@ -49,6 +60,18 @@ func (h *AuthHandler) Register(c *gin.Context) {
 
 	c.JSON(http.StatusCreated, gin.H{"message": "User created"})
 }
+
+// Login godoc
+// @Summary Аутентификация пользователя
+// @Description Возвращает access и refresh токены
+// @Tags auth
+// @Accept  json
+// @Produce  json
+// @Param credentials body models.LoginRequest true "Учетные данные"
+// @Success 200 {object} map[string]string
+// @Failure 400 {object} map[string]string
+// @Failure 401 {object} map[string]string
+// @Router /login [post]
 func (h *AuthHandler) Login(c *gin.Context) {
 	var req models.LoginRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
@@ -58,12 +81,12 @@ func (h *AuthHandler) Login(c *gin.Context) {
 
 	user, err := h.userRepo.GetUserByUsername(req.Username)
 	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid credentials"})
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid login"})
 		return
 	}
 
 	if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(req.Password)); err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid credentials"})
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid pas" + req.Password + " " + user.Password})
 		return
 	}
 
@@ -78,6 +101,17 @@ func (h *AuthHandler) Login(c *gin.Context) {
 	})
 }
 
+// Refresh godoc
+// @Summary Обновление токена
+// @Description Возвращает новый access токен
+// @Tags auth
+// @Accept  json
+// @Produce  json
+// @Param token body object{refresh_token=string} true "Refresh токен"
+// @Success 200 {object} map[string]string
+// @Failure 400 {object} map[string]string
+// @Failure 401 {object} map[string]string
+// @Router /refresh [post]
 func (h *AuthHandler) Refresh(c *gin.Context) {
 	var req struct {
 		RefreshToken string `json:"refresh_token" binding:"required"`
