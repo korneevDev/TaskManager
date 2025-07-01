@@ -27,7 +27,6 @@ func main() {
 		log.Fatal("Failed to load config:", err)
 	}
 
-	// Подключаемся к БД
 	dsn := "host=" + cfg.DBHost +
 		" user=" + cfg.DBUser +
 		" password=" + cfg.DBPassword +

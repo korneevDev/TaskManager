@@ -1,0 +1,58 @@
+definitions:
+  models.Task:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      status:
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: integer
+    required:
+    - title
+    type: object
+info:
+  contact: {}
+  title: Task Service API
+  version: "1.0"
+paths:
+  /tasks:
+    get:
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Task'
+            type: array
+      security:
+      - BearerAuth: []
+      summary: Получить список задач
+      tags:
+      - tasks
+    post:
+      parameters:
+      - description: Данные задачи
+        in: body
+        name: task
+        required: true
+        schema:
+          $ref: '#/definitions/models.Task'
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Task'
+      security:
+      - BearerAuth: []
+      summary: Создать задачу
+      tags:
+      - tasks
+swagger: "2.0"
