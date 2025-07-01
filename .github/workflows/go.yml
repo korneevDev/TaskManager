@@ -31,4 +31,6 @@ jobs:
 
       - name: Build ${{ matrix.service }}
         working-directory: ./${{ matrix.service }}
-        run: go build -v ./cmd/...
+        run: |
+              cd cmd
+              go build -v .
