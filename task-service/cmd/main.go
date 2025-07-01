@@ -2,6 +2,8 @@ package main
 
 import (
 	"log"
+	"net/http"
+	"strings"
 
 	_ "github.com/korneevDev/task-service/docs"
 
@@ -19,7 +21,7 @@ import (
 // @title Task Service API
 // @version 1.0
 func main() {
-	cfg, err := configs.LoadConfig()
+	cfg, _ := configs.LoadConfig()
 	dsn := "host=" + cfg.DBHost +
 		" user=" + cfg.DBUser +
 		" password=" + cfg.DBPassword +
@@ -34,20 +36,31 @@ func main() {
 	db.AutoMigrate(&models.Task{})
 
 	taskRepo := repository.NewTaskRepository(db)
-	taskHandler := handlers.NewTaskHandler(*taskRepo)
+	taskHandler := handlers.NewTaskHandler(*taskRepo, cfg.JWTSecret)
 
 	r := gin.Default()
 
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	taskGroup := r.Group("/tasks")
-	//  taskGroup.Use(authMiddleware())
+	taskGroup.Use(func(c *gin.Context) {
+
+		if strings.HasPrefix(c.Request.URL.Path, "/swagger/") {
+			c.Next()
+			return
+		}
+		if _, err := taskHandler.ExtractUserID(c); err != nil {
+			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "Invalid token" + err.Error()})
+			return
+		}
+		c.Next()
+	})
 	{
 		taskGroup.POST("", taskHandler.Create)
 		taskGroup.GET("", taskHandler.List)
-		// taskGroup.GET("/:id", taskHandler.Get)
-		// taskGroup.PUT("/:id", taskHandler.Update)
-		// taskGroup.DELETE("/:id", taskHandler.Delete)
+		taskGroup.GET("/:id", taskHandler.GetTaskByID)
+		taskGroup.PUT("/:id", taskHandler.UpdateTask)
+		taskGroup.DELETE("/:id", taskHandler.DeleteTask)
 	}
 
 	r.Run(":8081")

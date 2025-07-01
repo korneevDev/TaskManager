@@ -55,4 +55,54 @@ paths:
       summary: Создать задачу
       tags:
       - tasks
+  /tasks/{id}:
+    delete:
+      parameters:
+      - description: ID задачи
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "204":
+          description: No Content
+      security:
+      - BearerAuth: []
+      summary: Удалить задачу
+    get:
+      parameters:
+      - description: ID задачи
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Task'
+      security:
+      - BearerAuth: []
+      summary: Получить задачу по ID
+    put:
+      parameters:
+      - description: ID задачи
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Данные для обновления
+        in: body
+        name: task
+        required: true
+        schema:
+          $ref: '#/definitions/models.Task'
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Task'
+      security:
+      - BearerAuth: []
+      summary: Обновить задачу
 swagger: "2.0"

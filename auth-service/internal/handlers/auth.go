@@ -81,12 +81,12 @@ func (h *AuthHandler) Login(c *gin.Context) {
 
 	user, err := h.userRepo.GetUserByUsername(req.Username)
 	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid login"})
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid login or pass"})
 		return
 	}
 
 	if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(req.Password)); err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid pas" + req.Password + " " + user.Password})
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid login or pass"})
 		return
 	}
 

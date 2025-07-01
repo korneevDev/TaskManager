@@ -1,6 +1,7 @@
 package jwt
 
 import (
+	"strconv"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
@@ -9,7 +10,7 @@ import (
 
 func GenerateAccessToken(user *models.User, accessTokenExpiry time.Duration, secretKey string) (string, error) {
 	claims := jwt.MapClaims{
-		"sub": user.ID,
+		"sub": strconv.FormatUint(uint64(user.ID), 10),
 		"exp": time.Now().Add(accessTokenExpiry).Unix(),
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
@@ -18,7 +19,7 @@ func GenerateAccessToken(user *models.User, accessTokenExpiry time.Duration, sec
 
 func GenerateRefreshToken(user *models.User, refreshTokenExpiry time.Duration, secretKey string) (string, error) {
 	claims := jwt.MapClaims{
-		"sub": user.ID,
+		"sub": strconv.FormatUint(uint64(user.ID), 10),
 		"exp": time.Now().Add(refreshTokenExpiry).Unix(),
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
