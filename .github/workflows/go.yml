@@ -27,7 +27,7 @@ jobs:
       - name: Run tests for ${{ matrix.service }}
         working-directory: ./${{ matrix.service }}
         timeout-minutes: 10
-        run: go test ./...
+        run: go test -v ./...
 
       - name: Build ${{ matrix.service }}
         working-directory: ./${{ matrix.service }}
