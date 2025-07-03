@@ -1,0 +1,1 @@
+C:\Users\mik0war\Documents\MIREA\second_sem\System_programming\TaskManager\file-service\target\debug\file-service.exe: C:\Users\mik0war\Documents\MIREA\second_sem\System_programming\TaskManager\file-service\src\main.rs C:\Users\mik0war\Documents\MIREA\second_sem\System_programming\TaskManager\file-service\src\text_processor.rs

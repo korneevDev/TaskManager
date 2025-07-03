@@ -1,0 +1,10 @@
+C:\Users\mik0war\Documents\MIREA\second_sem\System_programming\TaskManager\file-service\target\debug\deps\libactix_codec-1fb09d73d9b6ec8d.rmeta: C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-codec-0.5.2\src\lib.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-codec-0.5.2\src\bcodec.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-codec-0.5.2\src\framed.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-codec-0.5.2\src\lines.rs
+
+C:\Users\mik0war\Documents\MIREA\second_sem\System_programming\TaskManager\file-service\target\debug\deps\libactix_codec-1fb09d73d9b6ec8d.rlib: C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-codec-0.5.2\src\lib.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-codec-0.5.2\src\bcodec.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-codec-0.5.2\src\framed.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-codec-0.5.2\src\lines.rs
+
+C:\Users\mik0war\Documents\MIREA\second_sem\System_programming\TaskManager\file-service\target\debug\deps\actix_codec-1fb09d73d9b6ec8d.d: C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-codec-0.5.2\src\lib.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-codec-0.5.2\src\bcodec.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-codec-0.5.2\src\framed.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-codec-0.5.2\src\lines.rs
+
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-codec-0.5.2\src\lib.rs:
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-codec-0.5.2\src\bcodec.rs:
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-codec-0.5.2\src\framed.rs:
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-codec-0.5.2\src\lines.rs:

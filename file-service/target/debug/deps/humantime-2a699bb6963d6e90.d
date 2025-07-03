@@ -1,0 +1,10 @@
+C:\Users\mik0war\Documents\MIREA\second_sem\System_programming\TaskManager\file-service\target\debug\deps\libhumantime-2a699bb6963d6e90.rmeta: C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\humantime-2.2.0\src\lib.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\humantime-2.2.0\src\date.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\humantime-2.2.0\src\duration.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\humantime-2.2.0\src\wrapper.rs
+
+C:\Users\mik0war\Documents\MIREA\second_sem\System_programming\TaskManager\file-service\target\debug\deps\libhumantime-2a699bb6963d6e90.rlib: C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\humantime-2.2.0\src\lib.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\humantime-2.2.0\src\date.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\humantime-2.2.0\src\duration.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\humantime-2.2.0\src\wrapper.rs
+
+C:\Users\mik0war\Documents\MIREA\second_sem\System_programming\TaskManager\file-service\target\debug\deps\humantime-2a699bb6963d6e90.d: C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\humantime-2.2.0\src\lib.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\humantime-2.2.0\src\date.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\humantime-2.2.0\src\duration.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\humantime-2.2.0\src\wrapper.rs
+
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\humantime-2.2.0\src\lib.rs:
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\humantime-2.2.0\src\date.rs:
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\humantime-2.2.0\src\duration.rs:
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\humantime-2.2.0\src\wrapper.rs:
