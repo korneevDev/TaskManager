@@ -1,0 +1,10 @@
+C:\Users\mik0war\Documents\MIREA\second_sem\System_programming\TaskManager\time-service\target\debug\deps\libthiserror-5f8ee7a15eb78ba6.rmeta: C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.12\src\lib.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.12\src\aserror.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.12\src\display.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.12\src\var.rs
+
+C:\Users\mik0war\Documents\MIREA\second_sem\System_programming\TaskManager\time-service\target\debug\deps\libthiserror-5f8ee7a15eb78ba6.rlib: C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.12\src\lib.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.12\src\aserror.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.12\src\display.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.12\src\var.rs
+
+C:\Users\mik0war\Documents\MIREA\second_sem\System_programming\TaskManager\time-service\target\debug\deps\thiserror-5f8ee7a15eb78ba6.d: C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.12\src\lib.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.12\src\aserror.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.12\src\display.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.12\src\var.rs
+
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.12\src\lib.rs:
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.12\src\aserror.rs:
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.12\src\display.rs:
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\thiserror-2.0.12\src\var.rs:

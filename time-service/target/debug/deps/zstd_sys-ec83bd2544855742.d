@@ -1,0 +1,9 @@
+C:\Users\mik0war\Documents\MIREA\second_sem\System_programming\TaskManager\time-service\target\debug\deps\libzstd_sys-ec83bd2544855742.rmeta: C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\zstd-sys-2.0.15+zstd.1.5.7\src\lib.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\zstd-sys-2.0.15+zstd.1.5.7\src\bindings_zstd.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\zstd-sys-2.0.15+zstd.1.5.7\src\bindings_zdict.rs
+
+C:\Users\mik0war\Documents\MIREA\second_sem\System_programming\TaskManager\time-service\target\debug\deps\libzstd_sys-ec83bd2544855742.rlib: C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\zstd-sys-2.0.15+zstd.1.5.7\src\lib.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\zstd-sys-2.0.15+zstd.1.5.7\src\bindings_zstd.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\zstd-sys-2.0.15+zstd.1.5.7\src\bindings_zdict.rs
+
+C:\Users\mik0war\Documents\MIREA\second_sem\System_programming\TaskManager\time-service\target\debug\deps\zstd_sys-ec83bd2544855742.d: C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\zstd-sys-2.0.15+zstd.1.5.7\src\lib.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\zstd-sys-2.0.15+zstd.1.5.7\src\bindings_zstd.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\zstd-sys-2.0.15+zstd.1.5.7\src\bindings_zdict.rs
+
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\zstd-sys-2.0.15+zstd.1.5.7\src\lib.rs:
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\zstd-sys-2.0.15+zstd.1.5.7\src\bindings_zstd.rs:
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\zstd-sys-2.0.15+zstd.1.5.7\src\bindings_zdict.rs:

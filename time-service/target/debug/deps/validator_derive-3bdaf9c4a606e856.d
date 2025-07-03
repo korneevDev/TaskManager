@@ -1,0 +1,9 @@
+C:\Users\mik0war\Documents\MIREA\second_sem\System_programming\TaskManager\time-service\target\debug\deps\validator_derive-3bdaf9c4a606e856.dll: C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\validator_derive-0.16.0\src\lib.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\validator_derive-0.16.0\src\asserts.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\validator_derive-0.16.0\src\lit.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\validator_derive-0.16.0\src\quoting.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\validator_derive-0.16.0\src\validation.rs
+
+C:\Users\mik0war\Documents\MIREA\second_sem\System_programming\TaskManager\time-service\target\debug\deps\validator_derive-3bdaf9c4a606e856.d: C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\validator_derive-0.16.0\src\lib.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\validator_derive-0.16.0\src\asserts.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\validator_derive-0.16.0\src\lit.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\validator_derive-0.16.0\src\quoting.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\validator_derive-0.16.0\src\validation.rs
+
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\validator_derive-0.16.0\src\lib.rs:
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\validator_derive-0.16.0\src\asserts.rs:
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\validator_derive-0.16.0\src\lit.rs:
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\validator_derive-0.16.0\src\quoting.rs:
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\validator_derive-0.16.0\src\validation.rs:

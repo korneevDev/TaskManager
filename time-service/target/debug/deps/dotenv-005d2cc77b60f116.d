@@ -1,0 +1,11 @@
+C:\Users\mik0war\Documents\MIREA\second_sem\System_programming\TaskManager\time-service\target\debug\deps\libdotenv-005d2cc77b60f116.rmeta: C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\dotenv-0.15.0\src\lib.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\dotenv-0.15.0\src\parse.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\dotenv-0.15.0\src\errors.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\dotenv-0.15.0\src\iter.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\dotenv-0.15.0\src\find.rs
+
+C:\Users\mik0war\Documents\MIREA\second_sem\System_programming\TaskManager\time-service\target\debug\deps\libdotenv-005d2cc77b60f116.rlib: C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\dotenv-0.15.0\src\lib.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\dotenv-0.15.0\src\parse.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\dotenv-0.15.0\src\errors.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\dotenv-0.15.0\src\iter.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\dotenv-0.15.0\src\find.rs
+
+C:\Users\mik0war\Documents\MIREA\second_sem\System_programming\TaskManager\time-service\target\debug\deps\dotenv-005d2cc77b60f116.d: C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\dotenv-0.15.0\src\lib.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\dotenv-0.15.0\src\parse.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\dotenv-0.15.0\src\errors.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\dotenv-0.15.0\src\iter.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\dotenv-0.15.0\src\find.rs
+
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\dotenv-0.15.0\src\lib.rs:
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\dotenv-0.15.0\src\parse.rs:
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\dotenv-0.15.0\src\errors.rs:
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\dotenv-0.15.0\src\iter.rs:
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\dotenv-0.15.0\src\find.rs:

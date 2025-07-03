@@ -1,0 +1,10 @@
+C:\Users\mik0war\Documents\MIREA\second_sem\System_programming\TaskManager\time-service\target\debug\deps\liblock_api-2bf3e6b47980ccc0.rmeta: C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\lock_api-0.4.13\src\lib.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\lock_api-0.4.13\src\mutex.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\lock_api-0.4.13\src\remutex.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\lock_api-0.4.13\src\rwlock.rs
+
+C:\Users\mik0war\Documents\MIREA\second_sem\System_programming\TaskManager\time-service\target\debug\deps\liblock_api-2bf3e6b47980ccc0.rlib: C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\lock_api-0.4.13\src\lib.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\lock_api-0.4.13\src\mutex.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\lock_api-0.4.13\src\remutex.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\lock_api-0.4.13\src\rwlock.rs
+
+C:\Users\mik0war\Documents\MIREA\second_sem\System_programming\TaskManager\time-service\target\debug\deps\lock_api-2bf3e6b47980ccc0.d: C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\lock_api-0.4.13\src\lib.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\lock_api-0.4.13\src\mutex.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\lock_api-0.4.13\src\remutex.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\lock_api-0.4.13\src\rwlock.rs
+
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\lock_api-0.4.13\src\lib.rs:
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\lock_api-0.4.13\src\mutex.rs:
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\lock_api-0.4.13\src\remutex.rs:
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\lock_api-0.4.13\src\rwlock.rs:

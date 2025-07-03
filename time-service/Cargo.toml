@@ -1,0 +1,23 @@
+[package]
+name = "time-tracking-service"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+actix-web = "4"
+actix-identity = "0.5"
+actix-cors = "0.6"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+chrono = { version = "0.4", features = ["serde"] }
+dotenv = "0.15"
+diesel = { version = "2.0", features = ["postgres", "chrono", "uuid", "r2d2"] }
+diesel_migrations = "2.0"
+uuid = { version = "1.0", features = ["v4", "serde"] }
+jsonwebtoken = "8"
+config = "0.13"
+validator = { version = "0.16", features = ["derive"] }
+thiserror = "1.0"
+log = "0.4"
+env_logger = "0.9"
+derive_more = "0.99"
