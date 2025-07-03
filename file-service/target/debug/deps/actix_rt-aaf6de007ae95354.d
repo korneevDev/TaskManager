@@ -1,0 +1,10 @@
+C:\Users\mik0war\Documents\MIREA\second_sem\System_programming\TaskManager\file-service\target\debug\deps\libactix_rt-aaf6de007ae95354.rmeta: C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-rt-2.10.0\src\lib.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-rt-2.10.0\src\arbiter.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-rt-2.10.0\src\runtime.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-rt-2.10.0\src\system.rs
+
+C:\Users\mik0war\Documents\MIREA\second_sem\System_programming\TaskManager\file-service\target\debug\deps\libactix_rt-aaf6de007ae95354.rlib: C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-rt-2.10.0\src\lib.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-rt-2.10.0\src\arbiter.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-rt-2.10.0\src\runtime.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-rt-2.10.0\src\system.rs
+
+C:\Users\mik0war\Documents\MIREA\second_sem\System_programming\TaskManager\file-service\target\debug\deps\actix_rt-aaf6de007ae95354.d: C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-rt-2.10.0\src\lib.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-rt-2.10.0\src\arbiter.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-rt-2.10.0\src\runtime.rs C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-rt-2.10.0\src\system.rs
+
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-rt-2.10.0\src\lib.rs:
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-rt-2.10.0\src\arbiter.rs:
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-rt-2.10.0\src\runtime.rs:
+C:\Users\mik0war\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\actix-rt-2.10.0\src\system.rs:
